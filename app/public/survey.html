@@ -29,6 +29,13 @@
         <input class="form-control form-control-lg" type="text" placeholder="Name(Required)" id="nameInput" required>
         <br>
         <input class="form-control form-control-lg" type="text" placeholder="Link to Photo Image (Required)" id="imgInput" required>
+        <br>
+        <h5>Gender</h5>
+        <select class="custom-select" id="gender">
+          <option selected="" required></option>
+          <option value="1">Female</option>
+          <option value="2">Male</option>
+        </select>
       </div>
       <h3><strong>Questions</strong></h3>
       <div class="form-group">
@@ -163,30 +170,56 @@
       var newFriend = {
         name: $("#nameInput").val().trim(),
         photo: $("#imgInput").val().trim(),
+        gender: $("#gender").val().trim(),
         scores: [$("#question1").val().trim(), $("#question2").val().trim(), $("#question3").val().trim(), $("#question4").val().trim(), $("#question5").val().trim(), $("#question6").val().trim(), $("#question7").val().trim(), $("#question8").val().trim(), $("#question9").val().trim(), $("#question10").val().trim(),]
       };
 
       console.log(newFriend);
 
-      $.post("/api/friends", newFriend,
-        function(data) {
+      if (newFriend.gender === 'male' ) {
+        $.post("/api/maleFriends", newFriend,
+          function(data) {
+          });
 
-          // Clear the form when submitting
-          $("#nameInput").val("");
-          $("#imgInput").val("");
-          $("#question1").val("");
-          $("#question2").val("");
-          $("#question3").val("");
-          $("#question4").val("");
-          $("#question5").val("");
-          $("#question6").val("");
-          $("#question7").val("");
-          $("#question8").val("");
-          $("#question9").val("");
-          $("#question10").val("");
+          var currentURL = window.location.origin;
 
+          // The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
+          $.ajax({ url: currentURL + "/api/maleFriends", method: "GET" })
+          .done(function(friendsData) {
 
-        });
+          console.log(friendsData)
+          return
+          })
+      } else {
+        $.post("/api/femaleFriends", newFriend,
+          function(data) {
+          });
+
+          var currentURL = window.location.origin;
+
+          // The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
+          $.ajax({ url: currentURL + "/api/femaleFriends", method: "GET" })
+          .done(function(friendsData) {
+
+          console.log(friendsData)
+          return
+        })
+      }
+
+                // Clear the form when submitting
+                $("#nameInput").val("");
+                $("#imgInput").val("");
+                $("#question1").val("");
+                $("#question2").val("");
+                $("#question3").val("");
+                $("#question4").val("");
+                $("#question5").val("");
+                $("#question6").val("");
+                $("#question7").val("");
+                $("#question8").val("");
+                $("#question9").val("");
+                $("#question10").val("");
+
     });
   </script>
 
