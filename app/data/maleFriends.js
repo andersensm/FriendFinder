@@ -1,4 +1,4 @@
-var friendsArray = [
+var maleFriendsArray = [
   {
     "name":"Bill Gates",
     "photo":"http://elderinsuranceagency.com/wp-content/uploads/2015/12/bill-gates-wealthiest-person.jpg",
@@ -62,7 +62,7 @@ var friendsArray = [
         4,
         5
       ]
-  }
+  },
   {
     "name":"Kevin Hart",
     "photo":"https://www.ayola.tv/wp-content/uploads/2017/07/kevin-hart.jpg",
@@ -82,4 +82,4 @@ var friendsArray = [
 ]
 
 
-module.exports = friendsArray;
+module.exports = maleFriendsArray;

@@ -1,4 +1,4 @@
-var friendsArray = [
+var femaleFriendsArray = [
   {
     "name":"Scarlett Johansson",
     "photo":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Scarlett_Johansson_in_Kuwait_01b-tweaked.jpg/220px-Scarlett_Johansson_in_Kuwait_01b-tweaked.jpg",
@@ -62,7 +62,7 @@ var friendsArray = [
         4,
         5
       ]
-  }
+  },
   {
     "name":"Jamie Chung",
     "photo":"https://pm1.narvii.com/6335/ca6d080cfbc8fd2f8417c8edbf70ab77f99ea299_hq.jpg",
@@ -82,4 +82,4 @@ var friendsArray = [
 ]
 
 
-module.exports = friendsArray;
+module.exports = femaleFriendsArray;
