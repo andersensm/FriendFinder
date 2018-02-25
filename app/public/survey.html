@@ -172,29 +172,30 @@
 
       if (newFriend.gender === 'Male' ) {
           var currentURL = window.location.origin;
-          // The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
           $.ajax({ url: currentURL + "/api/maleFriends", method: "GET" })
           .done(function(friendsData) {
           console.log(friendsData)
 
-          //Continue and find counts to be added together and compared against each other
-          var newFriendScore = newFriend.scores.sum()
-          console.log(newFriendScore)
+          //IN PROGRESS
 
+          function getSum(total, num) {
+              return total + num;
+          }
 
-
-
+          for (var i = 0; i < friendsData.length; i++){
+            var newFriendScore = friendsData[i].scores.reduce(getSum);
+          }
+            console.log(newFriendScore)
           })
+
+
       } else {
           var currentURL = window.location.origin;
-          // The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
           $.ajax({ url: currentURL + "/api/femaleFriends", method: "GET" })
           .done(function(friendsData) {
           console.log(friendsData)
         })
       }
-
-                // Clear the form when submitting
                 $("#nameInput").val("");
                 $("#imgInput").val("");
                 $("#gender").val("");
@@ -208,7 +209,6 @@
                 $("#question8").val("");
                 $("#question9").val("");
                 $("#question10").val("");
-
     });
   </script>
 
