@@ -177,6 +177,8 @@
   <script type="text/javascript">
     var closestFriend;
     var person;
+    var newFriend;
+    var complete;
 
 
     $("#submit").on("click", function(event) {
@@ -205,11 +207,11 @@
 
 
       // Here we grab the form elements
-      var newFriend = {
-        name: $("#nameInput").val().trim(),
-        photo: $("#imgInput").val().trim(),
-        gender: $("#gender").val().trim(),
-        scores: [q1,q2,q3,q4,q5,q6,q7,q8,q9,q10]
+      newFriend = {
+        "name": nameInput,
+        "photo": imgInput,
+        "gender": genderInput,
+        "scores": [q1,q2,q3,q4,q5,q6,q7,q8,q9,q10]
       };
       console.log(newFriend);
       if (newFriend.gender === 'Male') {
@@ -226,15 +228,13 @@
             var newFriendScore = newFriend.scores.reduce(getSum)
             console.log(newFriendScore)
 
-            $.ajax({
-              url: window.location.origin + "/api/maleFriends"
-            })
             checkClosest()
             function matchModal() {
               var img = $("<div><img class='img-fluid' src=" + person.photo + "></div>")
               $("#modalImg").html(img)
               $("#modalName").text(person.name + ' is most compatible with you!')
               $("#modal").modal()
+              complete = true
             }
             //Find the closest value to the newFriend
             function checkClosest() {
@@ -256,21 +256,17 @@
                 }
               }
               matchModal()
+              if (complete === true) {
+                $.ajax({
+                  type: "POST",
+                  url: "/api/maleFriends",
+                  contentType : "application/json",
+                  data: JSON.stringify(newFriend)
+                });
+              }
+              complete = false
             }
           });
-          $.ajax({
-            type: "POST",
-            url: "/api/maleFriends",
-            data: newFriend,
-            dataType: "json"
-          });
-          // $.post("/api/maleFriends", newFriend, function(data) {
-          //   if (data) {
-          //     alert("Yay! You are officially booked!");
-          //   } else {
-          //     alert("Fail!")
-          //   }
-          // })
       } else {
         var currentURL = window.location.origin;
         $.ajax({
@@ -284,13 +280,14 @@
             }
             var newFriendScore = newFriend.scores.reduce(getSum)
             console.log(newFriendScore)
-            checkClosest()
 
+            checkClosest()
             function matchModal() {
               var img = $("<div><img class='img-fluid' src=" + person.photo + "></div>")
               $("#modalImg").html(img)
               $("#modalName").text(person.name + ' is most compatible with you!')
               $("#modal").modal()
+              complete = true
             }
             //Find the closest value to the newFriend
             function checkClosest() {
@@ -312,8 +309,17 @@
                 }
               }
               matchModal()
+              if (complete === true) {
+                $.ajax({
+                  type: "POST",
+                  url: "/api/femaleFriends",
+                  contentType : "application/json",
+                  data: JSON.stringify(newFriend)
+                });
+              }
+              complete = false
             }
-          })
+          });
       }
       $("#nameInput").val("");
       $("#imgInput").val("");
