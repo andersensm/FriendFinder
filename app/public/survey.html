@@ -24,21 +24,20 @@
         <a href="/"><button type="button" class="btn btn-lg btn-primary"><i class="fas fa-home"></i> Home</button></a>
       </div>
 
-      <div class="form-group">
-        <h3><strong>About You</strong></h3>
+      <h3><strong>About You</strong></h3>
+      <form>
         <input class="form-control form-control-lg" type="text" placeholder="Name(Required)" id="nameInput" required>
         <br>
         <input class="form-control form-control-lg" type="text" placeholder="Link to Photo Image (Required)" id="imgInput" required>
         <br>
         <h5>Gender</h5>
         <select class="custom-select" id="gender">
-          <option selected="" required></option>
-          <option value="Female">Female</option>
-          <option value="Male">Male</option>
-        </select>
-      </div>
-      <h3><strong>Questions</strong></h3>
-      <div class="form-group">
+            <option selected="" required></option>
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
+          </select>
+        <hr>
+        <h3><strong>Questions</strong></h3>
         <h5>Your mind is always buzzing with unexplored ideas and plans.</h5>
         <select class="custom-select" id="question1">
           <option selected="" required></option>
@@ -48,8 +47,7 @@
           <option value="4">4</option>
           <option value="5">5(Strongly Agree)</option>
         </select>
-      </div>
-      <div class="form-group">
+        <br>
         <h5>Generally speaking, you rely more on your experience than your imagination.</h5>
         <select class="custom-select" id="question2">
           <option selected="" required></option>
@@ -59,8 +57,7 @@
           <option value="4">4</option>
           <option value="5">5(Strongly Agree)</option>
         </select>
-      </div>
-      <div class="form-group">
+        <br>
         <h5>You find it easy to stay relaxed and focused even when there is some pressure.</h5>
         <select class="custom-select" id="question3">
           <option selected="" required></option>
@@ -70,8 +67,7 @@
           <option value="4">4</option>
           <option value="5">5(Strongly Agree)</option>
         </select>
-      </div>
-      <div class="form-group">
+        <br>
         <h5>You rarely do something just out of sheer curiosity.</h5>
         <select class="custom-select" id="question4">
           <option selected="" required></option>
@@ -81,8 +77,7 @@
           <option value="4">4</option>
           <option value="5">5(Strongly Agree)</option>
         </select>
-      </div>
-      <div class="form-group">
+        <br>
         <h5>People can rarely upset you.</h5>
         <select class="custom-select" id="question5">
           <option selected="" required></option>
@@ -92,8 +87,7 @@
           <option value="4">4</option>
           <option value="5">5(Strongly Agree)</option>
         </select>
-      </div>
-      <div class="form-group">
+        <br>
         <h5>It is often difficult for you to relate to other people’s feelings.</h5>
         <select class="custom-select" id="question6">
           <option selected="" required></option>
@@ -103,8 +97,7 @@
           <option value="4">4</option>
           <option value="5">5(Strongly Agree)</option>
         </select>
-      </div>
-      <div class="form-group">
+        <br>
         <h5>In a discussion, truth should be more important than people’s sensitivities.</h5>
         <select class="custom-select" id="question7">
           <option selected="" required></option>
@@ -114,8 +107,7 @@
           <option value="4">4</option>
           <option value="5">5(Strongly Agree)</option>
         </select>
-      </div>
-      <div class="form-group">
+        <br>
         <h5>You rarely get carried away by fantasies and ideas.</h5>
         <select class="custom-select" id="question8">
           <option selected="" required></option>
@@ -125,8 +117,7 @@
           <option value="4">4</option>
           <option value="5">5(Strongly Agree)</option>
         </select>
-      </div>
-      <div class="form-group">
+        <br>
         <h5>You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</h5>
         <select class="custom-select" id="question9">
           <option selected="" required></option>
@@ -136,8 +127,7 @@
           <option value="4">4</option>
           <option value="5">5(Strongly Agree)</option>
         </select>
-      </div>
-      <div class="form-group">
+        <br>
         <h5>You feel more energetic after spending time with a group of people.</h5>
         <select class="custom-select" id="question10">
           <option selected="" required></option>
@@ -147,68 +137,197 @@
           <option value="4">4</option>
           <option value="5">5(Strongly Agree)</option>
         </select>
-      </div>
-      <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+        <br>
+        <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+      </form>
+
     </div>
-    <footer class="footer">
-      <div class="container">
-        <p><a href="/api/maleFriends">Male Friends API Table Link</a> | <a href="/api/femaleFriends">Female Friends API Table Link</a> | <a href="https://github.com/andersensm/FriendFinder">GitHub Repo</a></p>
+
+  </div>
+  <div class="container">
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 id="modalName"></h4>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12 ">
+                <div style="max-width:200px max-height:200px" id="modalImg">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </footer>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="container">
+      <p><a href="/api/maleFriends">Male Friends API Table Link</a> | <a href="/api/femaleFriends">Female Friends API Table Link</a> | <a href="https://github.com/andersensm/FriendFinder">GitHub Repo</a></p>
+    </div>
+  </footer>
 
   </div>
   <script type="text/javascript">
+    var closestFriend;
+    var person;
+
+
     $("#submit").on("click", function(event) {
       event.preventDefault();
+      var q1 = $("#question1").val().trim()
+      var q2 = $("#question2").val().trim()
+      var q3 = $("#question3").val().trim()
+      var q4 = $("#question4").val().trim()
+      var q5 = $("#question5").val().trim()
+      var q6 = $("#question6").val().trim()
+      var q7 = $("#question7").val().trim()
+      var q8 = $("#question8").val().trim()
+      var q9 = $("#question9").val().trim()
+      var q10 = $("#question10").val().trim()
+      var nameInput = $("#nameInput").val().trim()
+      var imgInput = $("#imgInput").val().trim()
+      var genderInput = $("#gender").val().trim()
+
+      if ((nameInput === "") || (imgInput === "") || (genderInput === "") || (q1 === "") || (q2 === "") || (q3 === "") || (q4 === "") || (q5 === "") || (q6 === "") || (q7 === "") || (q8 === "") || (q9 === "") || (q10 === "")) {
+          var img = $("<div><img class='img-fluid' src='https://media.giphy.com/media/utO4QxTbV3Us/giphy.gif'></div>")
+          $("#modalImg").html(img)
+          $("#modalName").text('Enter information for all questions of the survey before continuing.')
+          $("#modal").modal()
+          return
+        }
+
 
       // Here we grab the form elements
       var newFriend = {
         name: $("#nameInput").val().trim(),
         photo: $("#imgInput").val().trim(),
         gender: $("#gender").val().trim(),
-        scores: [$("#question1").val().trim(), $("#question2").val().trim(), $("#question3").val().trim(), $("#question4").val().trim(), $("#question5").val().trim(), $("#question6").val().trim(), $("#question7").val().trim(), $("#question8").val().trim(), $("#question9").val().trim(), $("#question10").val().trim(),]
+        scores: [q1,q2,q3,q4,q5,q6,q7,q8,q9,q10]
       };
       console.log(newFriend);
-
-      if (newFriend.gender === 'Male' ) {
-          var currentURL = window.location.origin;
-          $.ajax({ url: currentURL + "/api/maleFriends", method: "GET" })
-          .done(function(friendsData) {
-          console.log(friendsData)
-
-          //IN PROGRESS
-
-          function getSum(total, num) {
-              return total + num;
-          }
-
-          for (var i = 0; i < friendsData.length; i++){
-            var newFriendScore = friendsData[i].scores.reduce(getSum);
-          }
-            console.log(newFriendScore)
+      if (newFriend.gender === 'Male') {
+        var currentURL = window.location.origin;
+        $.ajax({
+            url: currentURL + "/api/maleFriends",
+            method: "GET"
           })
-
-
-      } else {
-          var currentURL = window.location.origin;
-          $.ajax({ url: currentURL + "/api/femaleFriends", method: "GET" })
           .done(function(friendsData) {
-          console.log(friendsData)
-        })
+            console.log(friendsData)
+            function getSum(total, num) {
+              return parseInt(total) + parseInt(num);
+            }
+            var newFriendScore = newFriend.scores.reduce(getSum)
+            console.log(newFriendScore)
+
+            $.ajax({
+              url: window.location.origin + "/api/maleFriends"
+            })
+            checkClosest()
+            function matchModal() {
+              var img = $("<div><img class='img-fluid' src=" + person.photo + "></div>")
+              $("#modalImg").html(img)
+              $("#modalName").text(person.name + ' is most compatible with you!')
+              $("#modal").modal()
+            }
+            //Find the closest value to the newFriend
+            function checkClosest() {
+              for (var i = 0; i < friendsData.length; i++) {
+                if (friendsData[i] === friendsData[0]) {
+                  closestFriend = friendsData[i].scores.reduce(getSum) - newFriendScore
+                  console.log("initial sum", friendsData[i].scores.reduce(getSum))
+                  console.log("initial closest", closestFriend)
+                  person = friendsData[i]
+                  console.log("closest", closestFriend)
+                  console.log("person", person)
+                }
+                if (Math.abs(closestFriend) > Math.abs((friendsData[i].scores.reduce(getSum)) - newFriendScore)) {
+                  console.log("new sum", friendsData[i].scores.reduce(getSum))
+                  closestFriend = Math.abs(friendsData[i].scores.reduce(getSum) - newFriendScore)
+                  person = friendsData[i]
+                  console.log("closest", closestFriend)
+                  console.log("person", person)
+                }
+              }
+              matchModal()
+            }
+          });
+          $.ajax({
+            type: "POST",
+            url: "/api/maleFriends",
+            data: newFriend,
+            dataType: "json"
+          });
+          // $.post("/api/maleFriends", newFriend, function(data) {
+          //   if (data) {
+          //     alert("Yay! You are officially booked!");
+          //   } else {
+          //     alert("Fail!")
+          //   }
+          // })
+      } else {
+        var currentURL = window.location.origin;
+        $.ajax({
+            url: currentURL + "/api/femaleFriends",
+            method: "GET"
+          })
+          .done(function(friendsData) {
+            console.log(friendsData)
+            function getSum(total, num) {
+              return parseInt(total) + parseInt(num);
+            }
+            var newFriendScore = newFriend.scores.reduce(getSum)
+            console.log(newFriendScore)
+            checkClosest()
+
+            function matchModal() {
+              var img = $("<div><img class='img-fluid' src=" + person.photo + "></div>")
+              $("#modalImg").html(img)
+              $("#modalName").text(person.name + ' is most compatible with you!')
+              $("#modal").modal()
+            }
+            //Find the closest value to the newFriend
+            function checkClosest() {
+              for (var i = 0; i < friendsData.length; i++) {
+                if (friendsData[i] === friendsData[0]) {
+                  closestFriend = friendsData[i].scores.reduce(getSum) - newFriendScore
+                  console.log("initial sum", friendsData[i].scores.reduce(getSum))
+                  console.log("initial closest", closestFriend)
+                  person = friendsData[i]
+                  console.log("closest", closestFriend)
+                  console.log("person", person)
+                }
+                if (Math.abs(closestFriend) > Math.abs((friendsData[i].scores.reduce(getSum)) - newFriendScore)) {
+                  console.log("new sum", friendsData[i].scores.reduce(getSum))
+                  closestFriend = Math.abs(friendsData[i].scores.reduce(getSum) - newFriendScore)
+                  person = friendsData[i]
+                  console.log("closest", closestFriend)
+                  console.log("person", person)
+                }
+              }
+              matchModal()
+            }
+          })
       }
-                $("#nameInput").val("");
-                $("#imgInput").val("");
-                $("#gender").val("");
-                $("#question1").val("");
-                $("#question2").val("");
-                $("#question3").val("");
-                $("#question4").val("");
-                $("#question5").val("");
-                $("#question6").val("");
-                $("#question7").val("");
-                $("#question8").val("");
-                $("#question9").val("");
-                $("#question10").val("");
+      $("#nameInput").val("");
+      $("#imgInput").val("");
+      $("#gender").val("");
+      $("#question1").val("");
+      $("#question2").val("");
+      $("#question3").val("");
+      $("#question4").val("");
+      $("#question5").val("");
+      $("#question6").val("");
+      $("#question7").val("");
+      $("#question8").val("");
+      $("#question9").val("");
+      $("#question10").val("");
     });
   </script>
 
