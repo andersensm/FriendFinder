@@ -32,6 +32,7 @@ Designed to use the node.js & express.js for server-side code, and heroku for fr
       }
 ## **Video Tutorials**
    * https://drive.google.com/file/d/17Wa7fLRgYfmhQ20XMIO_sRWSNj2zdgHV/view
+   * Please note, the drop down options within the survery questions do not display in the google videos, they will display properly when accessing on Heroku.
 ## **Installation**
     * Nothing is required to use and access this application, enjoy!
     * https://tranquil-bayou-92776.herokuapp.com/
