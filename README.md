@@ -37,7 +37,6 @@ Designed to use the node.js & express.js for server-side code, and heroku for fr
     * Nothing is required to use and access this application, enjoy!
     * https://tranquil-bayou-92776.herokuapp.com/
 ## **How to use**
-  ### Customer: Point of View
     * Please take 5 mins to watch the video tutorial
     * Access the Heroku Link provided under Installation
     * Test out the database to your hearts content
